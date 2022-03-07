@@ -45,35 +45,7 @@ const Tablas = (props) => {
     });
   });
 
-  const data = [
-    // {
-    //   key: 1,
-    //   nombre: "consulta externa",
-    //   ano: ano,
-    // },
-  ];
-
-  // if (dataServidor) {
-  //   columns.forEach((columna, index) => {
-  //     if (index > 1) {
-  // 			data.push({
-  // 				key: index,
-
-  // 			});
-  //     }
-  //   });
-  // }
-
-  // if (dataServidor) {
-  //   data.forEach((dato) => {
-  //     meses.forEach((mes) => {
-  //       const porcentaje = dato.key === 4 ? "%" : dato.key === 5 ? "%" : "";
-  //       dato[mes.value] =
-  //         dataServidor[mes.key + "_" + diccionario[dato.key]].toString() +
-  //         porcentaje;
-  //     });
-  //   });
-  // }
+  const data = [];
 
   tipos.forEach((tipo) => {
     console.log(tipo);
@@ -106,21 +78,6 @@ const Tablas = (props) => {
         <Table columns={columns} pagination={false} dataSource={data} />
       </Row>
     </div>
-  );
-};
-
-const Tipos = (props) => {
-  const { titulo, ano, meses, data } = props;
-  return (
-    <Col xs={24}>
-      <Row>
-        <Titulo titulo={titulo}></Titulo>
-      </Row>
-      <Row>
-        <Contenido ano={ano} meses={meses} data={data}></Contenido>
-      </Row>
-      <Row></Row>
-    </Col>
   );
 };
 
