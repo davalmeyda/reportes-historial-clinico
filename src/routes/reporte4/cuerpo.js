@@ -7,7 +7,7 @@ import Tablas from "./tablas";
 const Cuerpo = () => {
   const [ano, setAno] = useState("");
   const [meses, setMeses] = useState([]);
-  const [tipos, setTipos] = useState([]);
+  const [especialidades, setEspecialidades] = useState([]);
   const [data, setData] = useState(null);
   const [cargando, setCargando] = useState(false);
 
@@ -33,11 +33,11 @@ const Cuerpo = () => {
     <Option key="di">Diciembre</Option>,
   ];
 
-  const tiposData = [
-    <Option key="0001">Laboratorio</Option>,
-    <Option key="0002">Procedimientos Medicos</Option>,
-    <Option key="0003">Ecografia</Option>,
-    <Option key="0004">Rayos X</Option>,
+  const especialidadData = [
+    <Option key="001">CARDIOLOGIA</Option>,
+    <Option key="002">DERMATOLOGIA</Option>,
+    <Option key="003">GASTROENTEROLOGIA</Option>,
+    <Option key="004">GINECOLOGIA</Option>,
   ];
 
   function handleChangeMeses(value) {
@@ -89,24 +89,24 @@ const Cuerpo = () => {
     setMeses(dat);
   }
 
-  function handleChangeTipos(value) {
+  function handleChangeEspecialidad(value) {
     // {{ key: "0001", titulo: "Laboratorio" }}
 
     const dat = value.map((element) => {
       let resp = null;
 
       switch (element) {
-        case "0001":
-          resp = { key: "0001", titulo: "Laboratorio" };
+        case "001":
+          resp = { key: "001", titulo: "CARDIOLOGIA" };
           break;
-        case "0002":
-          resp = { key: "0002", titulo: "Procedimientos Medicos" };
+        case "002":
+          resp = { key: "002", titulo: "DERMATOLOGIA" };
           break;
-        case "0003":
-          resp = { key: "0003", titulo: "Ecografia" };
+        case "003":
+          resp = { key: "003", titulo: "GASTROENTEROLOGIA" };
           break;
-        case "0004":
-          resp = { key: "0004", titulo: "Rayos X" };
+        case "004":
+          resp = { key: "004", titulo: "GINECOLOGIA" };
           break;
         default:
           break;
@@ -114,13 +114,13 @@ const Cuerpo = () => {
       return resp;
     });
     console.log(dat);
-    setTipos(dat);
+    setEspecialidades(dat);
   }
 
   async function traerData() {
     if (ano !== "") {
       setCargando(true);
-      const response = await httpClient.post("/reportes/getReporte2", {
+      const response = await httpClient.post("/reportes/getReporte4", {
         AÑO: ano,
       });
       setData(response.data.data);
@@ -156,15 +156,15 @@ const Cuerpo = () => {
             </Tooltip>
           </Col>
           <Col xs={9}>
-            <Tooltip title="Seleccione los tipos">
+            <Tooltip title="Seleccione las especialidades">
               <Select
                 mode="multiple"
                 allowClear
                 style={{ width: "100%" }}
-                placeholder="Seleccione los tipos"
-                onChange={handleChangeTipos}
+                placeholder="Seleccione los especialidades"
+                onChange={handleChangeEspecialidad}
               >
-                {tiposData}
+                {especialidadData}
               </Select>
             </Tooltip>
           </Col>
@@ -183,9 +183,14 @@ const Cuerpo = () => {
           </Col>
         </Row>
 
-        {/* {data ? (
-          <Tablas ano={ano} meses={meses} tipos={tipos} data={data}></Tablas>
-        ) : null} */}
+        {data ? (
+          <Tablas
+            ano={ano}
+            meses={meses}
+            especialidades={especialidades}
+            data={data}
+          ></Tablas>
+        ) : null}
       </Col>
     </div>
   );

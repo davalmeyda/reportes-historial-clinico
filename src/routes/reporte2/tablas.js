@@ -50,14 +50,21 @@ const Tablas = (props) => {
   tipos.forEach((tipo) => {
     console.log(tipo);
     const campos = {};
-    meses.forEach((mes, index) => {
-      campos[mes.value] = dataServidor.filter(
-        (dato) => dato.cod_tipor === tipo.key
-      )[0][mes.key + "_" + diccionario[2]];
-      campos[mes.key + "orden"] = dataServidor.filter(
-        (dato) => dato.cod_tipor === tipo.key
-      )[0][mes.key + "_" + diccionario[1]];
-    });
+    if (dataServidor.length > 0) {
+      meses.forEach((mes, index) => {
+        const ddd = dataServidor.filter((dato) => dato.cod_tipor === tipo.key);
+
+        if (ddd.length > 0) {
+          campos[mes.value] =
+            "S/. " +
+            parseFloat(ddd[0][mes.key + "_" + diccionario[2]]).toFixed(2);
+          campos[mes.key + "orden"] = ddd[0][mes.key + "_" + diccionario[1]];
+        } else {
+          campos[mes.value] = "";
+          campos[mes.key + "orden"] = "";
+        }
+      });
+    }
 
     console.log(campos);
 

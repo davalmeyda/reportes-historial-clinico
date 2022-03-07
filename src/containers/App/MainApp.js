@@ -94,7 +94,7 @@ const MainApp = () => {
           <App match={match}/>
           <Footer>
             <div className="gx-layout-footer-content">
-              {footerText}
+              {/* {footerText} */}
             </div>
           </Footer>
         </Content>
