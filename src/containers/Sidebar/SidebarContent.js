@@ -48,11 +48,11 @@ const SidebarContent = ({sidebarCollapsed, setSidebarCollapsed}) => {
                 <span>Analisis de Ordenes y Pacientes vs Concluidos</span>
               </Link>
             </Menu.Item>
-            {/* <Menu.Item key="sample">
-              <Link to="/sample"><i className="icon icon-widgets"/>
-                <span><IntlMessages id="sidebar.samplePage"/></span>
+            <Menu.Item key="reporte2">
+              <Link to="/reporte2"><i className="icon icon-widgets"/>
+                <span>Analisis de Venta por Mes</span>
               </Link>
-            </Menu.Item> */}
+            </Menu.Item>
 
           </Menu>
         </CustomScrollbars>

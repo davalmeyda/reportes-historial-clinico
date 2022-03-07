@@ -8,8 +8,6 @@ const Cuerpo = () => {
   const [ano, setAno] = useState("");
   const [meses, setMeses] = useState([]);
   const [tipos, setTipos] = useState([]);
-  const [ordenes, setOrdenes] = useState(true);
-  const [compras, setCompras] = useState(true);
   const [data, setData] = useState(null);
   const [cargando, setCargando] = useState(false);
 
@@ -122,7 +120,7 @@ const Cuerpo = () => {
   async function traerData() {
     if (ano !== "") {
       setCargando(true);
-      const response = await httpClient.post("/reportes/getReporte1", {
+      const response = await httpClient.post("/reportes/getReporte2", {
         AÑO: ano,
       });
       setData(response.data.data);
@@ -144,48 +142,31 @@ const Cuerpo = () => {
               />
             </Tooltip>
           </Col>
-          <Col xs={7}>
+          <Col xs={9}>
             <Tooltip title="Seleccione los meses">
               <Select
                 mode="multiple"
                 allowClear
                 style={{ width: "100%" }}
                 placeholder="Seleccione los meses"
-                // defaultValue={["a10", "c12"]}
                 onChange={handleChangeMeses}
               >
                 {mesesData}
               </Select>
             </Tooltip>
           </Col>
-          <Col xs={7}>
+          <Col xs={9}>
             <Tooltip title="Seleccione los tipos">
               <Select
                 mode="multiple"
                 allowClear
                 style={{ width: "100%" }}
                 placeholder="Seleccione los tipos"
-                // defaultValue={["a10", "c12"]}
                 onChange={handleChangeTipos}
               >
                 {tiposData}
               </Select>
             </Tooltip>
-          </Col>
-          <Col xs={4}>
-            <Checkbox
-              defaultChecked={true}
-              onChange={(value) => setOrdenes(value.target.checked)}
-            >
-              Ordenes
-            </Checkbox>
-            <br />
-            <Checkbox
-              defaultChecked={true}
-              onChange={(value) => setCompras(value.target.checked)}
-            >
-              Compras
-            </Checkbox>
           </Col>
 
           <Col xs={2}>
@@ -202,15 +183,8 @@ const Cuerpo = () => {
           </Col>
         </Row>
 
-        {data && (ordenes || compras) ? (
-          <Tablas
-            ano={ano}
-            meses={meses}
-            tipos={tipos}
-            ordenes={ordenes}
-            compras={compras}
-            data={data}
-          ></Tablas>
+        {data ? (
+          <Tablas ano={ano} meses={meses} tipos={tipos} data={data}></Tablas>
         ) : null}
       </Col>
     </div>

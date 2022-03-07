@@ -1,4 +1,4 @@
-import { Table, Tag, Space, Row, Col, Pagination } from "antd";
+import { Table, Tag, Space, Row, Col, Pagination, Divider } from "antd";
 
 const Tablas = (props) => {
   const { ano, meses, tipos, ordenes, compras, data: dataServidor } = props;
@@ -6,15 +6,23 @@ const Tablas = (props) => {
   const tiposOrdenados = tipos.sort((a, b) => a.key - b.key);
 
   const dataOrden = dataServidor[0];
+  const dataProducto = dataServidor[1];
 
   return (
     <div>
       <Row>
         {tiposOrdenados.map((tipo) => {
-          let dat = null;
+          let datOrden = null;
           dataOrden.forEach((element) => {
             if (element.cod_tipor === tipo.key) {
-              dat = element;
+              datOrden = element;
+            }
+          });
+
+          let datProducto = null;
+          dataProducto.forEach((element) => {
+            if (element.cod_tipor === tipo.key) {
+              datProducto = element;
             }
           });
 
@@ -23,7 +31,10 @@ const Tablas = (props) => {
               titulo={tipo.titulo}
               ano={ano}
               meses={meses}
-              data={dat}
+              dataOrden={datOrden}
+              dataProducto={datProducto}
+              ordenes={ordenes}
+              compras={compras}
             ></Tipos>
           );
         })}
@@ -33,17 +44,32 @@ const Tablas = (props) => {
 };
 
 const Tipos = (props) => {
+  const { titulo, ano, meses, dataOrden, dataProducto, ordenes, compras } =
+    props;
   return (
     <Col xs={24}>
       <Row>
-        <Titulo titulo={props.titulo}></Titulo>
+        <Titulo titulo={titulo}></Titulo>
       </Row>
       <Row>
-        <Contenido
-          ano={props.ano}
-          meses={props.meses}
-          data={props.data}
-        ></Contenido>
+        {ordenes ? (
+          <Contenido
+            abc="ordenes"
+            ano={ano}
+            meses={meses}
+            data={dataOrden}
+          ></Contenido>
+        ) : null}
+      </Row>
+      <Row>
+        {compras ? (
+          <Contenido
+            abc="productos"
+            ano={ano}
+            meses={meses}
+            data={dataProducto}
+          ></Contenido>
+        ) : null}
       </Row>
     </Col>
   );
@@ -51,14 +77,27 @@ const Tipos = (props) => {
 
 const Titulo = (props) => {
   return (
-    <div style={{ paddingTop: 40 }}>
-      <h3>{props.titulo}</h3>
+    <div style={{ width: "100%", marginTop: 10 }}>
+      <Divider></Divider>
+      <div style={{ paddingTop: 30, paddingBottom: 10 }}>
+        <h3
+          style={{
+            paddingTop: 10,
+            paddingBottom: 10,
+            paddingLeft: 10,
+            fontWeight: 400,
+            backgroundColor: "#F9E4B7",
+          }}
+        >
+          {props.titulo.toUpperCase()}
+        </h3>
+      </div>
     </div>
   );
 };
 
 const Contenido = (props) => {
-  const { ano, meses: mesesDesordenado, data: dataServidor } = props;
+  const { ano, meses: mesesDesordenado, data: dataServidor, abc } = props;
 
   const meses = mesesDesordenado.sort((a, b) => a.orden - b.orden);
 
@@ -93,33 +132,64 @@ const Contenido = (props) => {
     });
   });
 
-  const data = [
-    {
-      key: 1,
-      nombre: "Nro de ordenes",
-      ano: ano,
-    },
-    {
-      key: 2,
-      nombre: "Nro ORDENES realizados",
-      ano: ano,
-    },
-    {
-      key: 3,
-      nombre: "Total pacientes",
-      ano: ano,
-    },
-    {
-      key: 4,
-      nombre: "% VERSUS ORDEN VS. CONCLUIDO",
-      ano: ano,
-    },
-    {
-      key: 5,
-      nombre: "% VERSUS DE PACIENTE VS ORDENE COCNL",
-      ano: ano,
-    },
-  ];
+  let data = [];
+  if (abc === "ordenes") {
+    data = [
+      {
+        key: 1,
+        nombre: "Nro de ordenes",
+        ano: ano,
+      },
+      {
+        key: 2,
+        nombre: "Nro ORDENES realizados",
+        ano: ano,
+      },
+      {
+        key: 3,
+        nombre: "Total pacientes",
+        ano: ano,
+      },
+      {
+        key: 4,
+        nombre: "% VERSUS ORDEN VS. CONCLUIDO",
+        ano: ano,
+      },
+      {
+        key: 5,
+        nombre: "% VERSUS DE PACIENTE VS ORDENE COCNL",
+        ano: ano,
+      },
+    ];
+  } else {
+    data = [
+      {
+        key: 1,
+        nombre: "NRO DE PRODUCTOS",
+        ano: ano,
+      },
+      {
+        key: 2,
+        nombre: "NRO DE PRODUCTO REALIZADO",
+        ano: ano,
+      },
+      {
+        key: 3,
+        nombre: "Total pacientes",
+        ano: ano,
+      },
+      {
+        key: 4,
+        nombre: "% VERSUS ORDEN VS. CONCLUIDO",
+        ano: ano,
+      },
+      {
+        key: 5,
+        nombre: "% VERSUS DE PACIENTE VS ORDENE COCNL",
+        ano: ano,
+      },
+    ];
+  }
 
   if (dataServidor) {
     data.forEach((dato) => {
