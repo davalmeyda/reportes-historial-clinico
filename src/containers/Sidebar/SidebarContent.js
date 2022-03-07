@@ -1,6 +1,7 @@
 import React from "react";
 import { Menu } from "antd";
 import { Link } from "react-router-dom";
+import SubMenu from "antd/lib/menu/SubMenu";
 
 import CustomScrollbars from "util/CustomScrollbars";
 import SidebarLogo from "./SidebarLogo";
@@ -24,6 +25,13 @@ const SidebarContent = ({ sidebarCollapsed, setSidebarCollapsed }) => {
       navStyle === NAV_STYLE_NO_HEADER_EXPANDED_SIDEBAR
     ) {
       return "gx-no-header-notifications";
+    }
+    return "";
+  };
+
+  const getNavStyleSubMenuClass = (navStyle) => {
+    if (navStyle === NAV_STYLE_NO_HEADER_MINI_SIDEBAR) {
+      return "gx-no-header-submenu-popup";
     }
     return "";
   };
@@ -65,15 +73,46 @@ const SidebarContent = ({ sidebarCollapsed, setSidebarCollapsed }) => {
               </Link>
             </Menu.Item>
             <Menu.Item key="reporte3">
-              <Link to="/reporte3"><i className="icon icon-widgets"/>
+              <Link to="/reporte3">
+                <i className="icon icon-widgets" />
                 <span>Examenes mas Rotados</span>
               </Link>
             </Menu.Item>
             <Menu.Item key="reporte4">
-              <Link to="/reporte4"><i className="icon icon-widgets"/>
+              <Link to="/reporte4">
+                <i className="icon icon-widgets" />
                 <span>Atencion de espcialidades por mes</span>
               </Link>
             </Menu.Item>
+            <SubMenu
+              key="powerBi"
+              popupClassName={getNavStyleSubMenuClass(navStyle)}
+              title={
+                <span>
+                  <i className="icon icon-icon" />
+                  <span>Power BI</span>
+                </span>
+              }
+            >
+              <Menu.Item key="generalVenta">
+                <Link to="/powerBi/generalVenta">
+                  <i className="icon icon-icon" />
+                  <span>Tablero General - Venta</span>
+                </Link>
+              </Menu.Item>
+              <Menu.Item key="especialidadDetallado">
+                <Link to="/powerBi/especialidadDetallado">
+                  <i className="icon icon-icon" />
+                  <span>Tablero Especialidad - Detallado</span>
+                </Link>
+              </Menu.Item>
+              <Menu.Item key="especialidadAcumulado">
+                <Link to="/powerBi/especialidadAcumulado">
+                  <i className="icon icon-icon" />
+                  <span>Tablero Especialidad - Acumulado</span>
+                </Link>
+              </Menu.Item>
+            </SubMenu>
           </Menu>
         </CustomScrollbars>
       </div>
