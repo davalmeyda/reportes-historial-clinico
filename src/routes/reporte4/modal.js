@@ -42,11 +42,16 @@ const ModalDetalles = ({ abrirModal, setAbrirModal, datosModal }) => {
       title: "Monto Vendido",
       dataIndex: "mont_venta_prod",
       key: "mont_venta_prod",
+      align: "right",
+      render: (text, record) => (
+        <span>{"S/ " + parseFloat(text).toFixed(2)}</span>
+      ),
     },
     {
       title: "Numero Ordenes",
       dataIndex: "num_order_prod",
       key: "num_order_prod",
+      align: "right",
     },
   ];
 
