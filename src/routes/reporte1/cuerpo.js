@@ -4,7 +4,7 @@ import { useState } from "react";
 import { httpClient } from "../../util/Api";
 import Tablas from "./tablas";
 
-const Cuerpo = () => {
+const Cuerpo = ({ impresion }) => {
   const [ano, setAno] = useState("");
   const [meses, setMeses] = useState([]);
   const [tipos, setTipos] = useState([]);
@@ -203,14 +203,16 @@ const Cuerpo = () => {
         </Row>
 
         {data && (ordenes || compras) ? (
-          <Tablas
-            ano={ano}
-            meses={meses}
-            tipos={tipos}
-            ordenes={ordenes}
-            compras={compras}
-            data={data}
-          ></Tablas>
+          <div ref={impresion}>
+            <Tablas
+              ano={ano}
+              meses={meses}
+              tipos={tipos}
+              ordenes={ordenes}
+              compras={compras}
+              data={data}
+            ></Tablas>
+          </div>
         ) : null}
       </Col>
     </div>

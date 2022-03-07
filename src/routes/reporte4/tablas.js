@@ -1,6 +1,7 @@
 import { PlusSquareOutlined } from "@ant-design/icons";
 import { Table, Tag, Space, Row, Col, Pagination, Divider, Button } from "antd";
 import { useState } from "react";
+import ModalDetalles from "./modal";
 
 const Tablas = (props) => {
   const {
@@ -8,6 +9,8 @@ const Tablas = (props) => {
     meses: mesesDesordenado,
     especialidades: especialidadesOrdenados,
     data: dataServidor,
+    setDatosModal,
+    setAbrirModal,
   } = props;
 
   const especialidades = especialidadesOrdenados.sort((a, b) => a.key - b.key);
@@ -56,9 +59,12 @@ const Tablas = (props) => {
             <Button
               type="primary"
               onClick={() => {
-                console.log("ESPECIALIDAD: ", record.key);
-                console.log("MES: ", mes.orden.toString().padStart(2, "0"));
-                console.log("AÑO: ", ano);
+                setDatosModal({
+                  ESPECIALIDAD: record.key,
+                  MES: mes.orden.toString().padStart(2, "0"),
+                  AÑO: ano,
+                });
+                setAbrirModal(true);
               }}
               icon={<PlusSquareOutlined />}
             />
@@ -121,7 +127,7 @@ const Tablas = (props) => {
   console.log(totales);
 
   return (
-    <div>
+    <div style={{ marginLeft: "10px" }}>
       <Row>
         <Titulo titulo={"Atencion de espcialidades por mes"}></Titulo>
       </Row>

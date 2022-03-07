@@ -1,8 +1,31 @@
-import { Card } from "antd";
-import React from "react";
+import { Card, Button } from "antd";
+import React, { useRef, useState } from "react";
 import Cuerpo from "./cuerpo";
+import ReactToPrint from "react-to-print";
+import ModalDetalles from "./modal";
 
 const Reporte4 = () => {
+  const [abrirModal, setAbrirModal] = useState(false);
+  const [datosModal, setDatosModal] = useState(null);
+  const pageStyle = `
+		@page {
+			margin: 15,
+      size: landscape
+		}
+
+		@media all {
+			.pagebreak {
+			display: none;
+			}
+		}
+
+		@media print {
+			.pagebreak {
+			page-break-before: always;
+			}
+		}
+		`;
+  const impresionRef = useRef();
   return (
     <Card
       title={
@@ -32,11 +55,28 @@ const Reporte4 = () => {
               flexDirection: "row-reverse",
               paddingTop: "15px",
             }}
-          ></div>
+          >
+            <ReactToPrint
+              pageStyle={pageStyle}
+              trigger={() => <Button type="primary">Imprimir</Button>}
+              content={() => impresionRef.current}
+            />
+          </div>
         </div>
       }
     >
-      <Cuerpo></Cuerpo>
+      <Cuerpo
+        setAbrirModal={setAbrirModal}
+        setDatosModal={setDatosModal}
+        impresion={impresionRef}
+      />
+      {abrirModal ? (
+        <ModalDetalles
+          abrirModal={abrirModal}
+          setAbrirModal={setAbrirModal}
+          datosModal={datosModal}
+        />
+      ) : null}
     </Card>
   );
 };

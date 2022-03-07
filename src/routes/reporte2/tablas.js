@@ -77,7 +77,7 @@ const Tablas = (props) => {
   });
 
   return (
-    <div>
+    <div style={{ marginLeft: "10px" }}>
       <Row>
         <Titulo titulo={"Ingresos por linea de negocio VENTA"}></Titulo>
       </Row>

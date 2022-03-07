@@ -4,7 +4,7 @@ import { useState } from "react";
 import { httpClient } from "../../util/Api";
 import Tablas from "./tablas";
 
-const Cuerpo = () => {
+const Cuerpo = ({ setAbrirModal, setDatosModal,impresion }) => {
   const [ano, setAno] = useState("");
   const [meses, setMeses] = useState([]);
   const [especialidades, setEspecialidades] = useState([]);
@@ -184,12 +184,16 @@ const Cuerpo = () => {
         </Row>
 
         {data ? (
+          <div ref={impresion}>
           <Tablas
             ano={ano}
             meses={meses}
             especialidades={especialidades}
             data={data}
+            setDatosModal={setDatosModal}
+            setAbrirModal={setAbrirModal}
           ></Tablas>
+          </div>
         ) : null}
       </Col>
     </div>

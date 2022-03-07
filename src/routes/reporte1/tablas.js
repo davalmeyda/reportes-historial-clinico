@@ -9,7 +9,7 @@ const Tablas = (props) => {
   const dataProducto = dataServidor[1];
 
   return (
-    <div>
+    <div style={{ marginLeft: "10px" }}>
       <Row>
         {tiposOrdenados.map((tipo) => {
           let datOrden = null;
