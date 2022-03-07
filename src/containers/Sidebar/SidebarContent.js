@@ -53,6 +53,16 @@ const SidebarContent = ({sidebarCollapsed, setSidebarCollapsed}) => {
                 <span>Analisis de Venta por Mes</span>
               </Link>
             </Menu.Item>
+            <Menu.Item key="reporte3">
+              <Link to="/reporte3"><i className="icon icon-widgets"/>
+                <span>Examenes mas Rotados</span>
+              </Link>
+            </Menu.Item>
+            <Menu.Item key="reporte4">
+              <Link to="/reporte4"><i className="icon icon-widgets"/>
+                <span>Atencion de espcialidades por mes</span>
+              </Link>
+            </Menu.Item>
 
           </Menu>
         </CustomScrollbars>
