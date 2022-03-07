@@ -6,8 +6,7 @@ import ReactToPrint from "react-to-print";
 const Reporte2 = () => {
   const pageStyle = `
 		@page {
-			margin: 15,
-      size: landscape
+			margin: 15
 		}
 
 		@media all {
@@ -18,9 +17,20 @@ const Reporte2 = () => {
 
 		@media print {
 			.pagebreak {
-			page-break-before: always;
+        margin-top: 1rem;
+        display: block;
+        page-break-before: auto;
 			}
 		}
+
+    @media print {
+      html, body {
+        height: initial !important;
+        overflow: initial !important;
+        -webkit-print-color-adjust: exact;
+      }
+    }
+
 		`;
   const impresionRef = useRef();
   return (

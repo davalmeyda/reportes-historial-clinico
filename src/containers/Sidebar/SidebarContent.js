@@ -94,12 +94,6 @@ const SidebarContent = ({ sidebarCollapsed, setSidebarCollapsed }) => {
                 </span>
               }
             >
-              <Menu.Item key="generalVenta">
-                <Link to="/powerBi/generalVenta">
-                  <i className="icon icon-icon" />
-                  <span>Tablero General - Venta</span>
-                </Link>
-              </Menu.Item>
               <Menu.Item key="especialidadDetallado">
                 <Link to="/powerBi/especialidadDetallado">
                   <i className="icon icon-icon" />
@@ -110,6 +104,12 @@ const SidebarContent = ({ sidebarCollapsed, setSidebarCollapsed }) => {
                 <Link to="/powerBi/especialidadAcumulado">
                   <i className="icon icon-icon" />
                   <span>Tablero Especialidad - Acumulado</span>
+                </Link>
+              </Menu.Item>
+              <Menu.Item key="generalVenta">
+                <Link to="/powerBi/generalVenta">
+                  <i className="icon icon-icon" />
+                  <span>Tablero General - Venta</span>
                 </Link>
               </Menu.Item>
             </SubMenu>

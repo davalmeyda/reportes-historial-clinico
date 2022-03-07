@@ -27,15 +27,17 @@ const Tablas = (props) => {
           });
 
           return (
-            <Tipos
-              titulo={tipo.titulo}
-              ano={ano}
-              meses={meses}
-              dataOrden={datOrden}
-              dataProducto={datProducto}
-              ordenes={ordenes}
-              compras={compras}
-            ></Tipos>
+            <>
+              <Tipos
+                titulo={tipo.titulo}
+                ano={ano}
+                meses={meses}
+                dataOrden={datOrden}
+                dataProducto={datProducto}
+                ordenes={ordenes}
+                compras={compras}
+              ></Tipos>
+            </>
           );
         })}
       </Row>

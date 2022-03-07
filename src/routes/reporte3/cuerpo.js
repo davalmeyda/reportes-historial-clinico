@@ -4,7 +4,7 @@ import { useState } from "react";
 import { httpClient } from "../../util/Api";
 import Tablas from "./tablas";
 
-const Cuerpo = () => {
+const Cuerpo = ({ impresion }) => {
   const [ano, setAno] = useState("");
   const [mes, setMes] = useState({});
   const [especialidad, setEspecialidad] = useState({});
@@ -180,12 +180,14 @@ const Cuerpo = () => {
         </Row>
 
         {data ? (
-          <Tablas
-            ano={ano}
-            mes={mes}
-            especialidad={especialidad}
-            data={data}
-          ></Tablas>
+          <div ref={impresion}>
+            <Tablas
+              ano={ano}
+              mes={mes}
+              especialidad={especialidad}
+              data={data}
+            ></Tablas>
+          </div>
         ) : null}
       </Col>
     </div>

@@ -1,8 +1,38 @@
-import { Card } from "antd";
-import React from "react";
+import { Card, Button } from "antd";
+import React, { useRef, useState } from "react";
 import Cuerpo from "./cuerpo";
+import ReactToPrint from "react-to-print";
 
 const Reporte3 = () => {
+  const pageStyle = `
+		@page {
+			margin: 15
+		}
+
+		@media all {
+			.pagebreak {
+			display: none;
+			}
+		}
+
+		@media print {
+			.pagebreak {
+        margin-top: 1rem;
+        display: block;
+        page-break-before: auto;
+			}
+		}
+
+    @media print {
+      html, body {
+        height: initial !important;
+        overflow: initial !important;
+        -webkit-print-color-adjust: exact;
+      }
+    }
+
+		`;
+  const impresionRef = useRef();
   return (
     <Card
       title={
@@ -32,11 +62,18 @@ const Reporte3 = () => {
               flexDirection: "row-reverse",
               paddingTop: "15px",
             }}
-          ></div>
+          >
+            <ReactToPrint
+              pageStyle={pageStyle}
+              trigger={() => <Button type="primary">Imprimir</Button>}
+              content={() => impresionRef.current}
+              // copyStyles={false}
+            />
+          </div>
         </div>
       }
     >
-      <Cuerpo></Cuerpo>
+      <Cuerpo impresion={impresionRef} />
     </Card>
   );
 };
