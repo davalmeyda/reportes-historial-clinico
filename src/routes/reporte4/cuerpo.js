@@ -1,6 +1,7 @@
 import { SearchOutlined } from "@ant-design/icons";
 import { DatePicker, Row, Col, Select, Checkbox, Tooltip, Button } from "antd";
 import { useState } from "react";
+import { tablasPrincipales } from "../../constants/TablasPrincipales";
 import { httpClient } from "../../util/Api";
 import Tablas from "./tablas";
 
@@ -18,20 +19,9 @@ const Cuerpo = ({ setAbrirModal, setDatosModal,impresion }) => {
 
   const { Option } = Select;
 
-  const mesesData = [
-    <Option key="en">Enero</Option>,
-    <Option key="fe">Febrero</Option>,
-    <Option key="ma">Marzo</Option>,
-    <Option key="ab">Abril</Option>,
-    <Option key="my">Mayo</Option>,
-    <Option key="jn">Junio</Option>,
-    <Option key="jl">Julio</Option>,
-    <Option key="ag">Agosto</Option>,
-    <Option key="se">Setiembre</Option>,
-    <Option key="oc">Octubre</Option>,
-    <Option key="no">Noviembre</Option>,
-    <Option key="di">Diciembre</Option>,
-  ];
+  const mesesData = tablasPrincipales.TablasPrincipales[1].map((item) => (
+    <Option key={item.prefijo}>{item.desc_mes}</Option>
+  ));
 
   const especialidadData = [
     <Option key="001">CARDIOLOGIA</Option>,
@@ -42,47 +32,15 @@ const Cuerpo = ({ setAbrirModal, setDatosModal,impresion }) => {
 
   function handleChangeMeses(value) {
     const dat = value.map((element) => {
-      let resp = null;
-      switch (element) {
-        case "en":
-          resp = { orden: 1, key: "en", value: "ENERO" };
-          break;
-        case "fe":
-          resp = { orden: 2, key: "fe", value: "FEBRERO" };
-          break;
-        case "ma":
-          resp = { orden: 3, key: "ma", value: "MARZO" };
-          break;
-        case "ab":
-          resp = { orden: 4, key: "ab", value: "ABRIL" };
-          break;
-        case "my":
-          resp = { orden: 5, key: "my", value: "MAYO" };
-          break;
-        case "jn":
-          resp = { orden: 6, key: "jn", value: "JUNIO" };
-          break;
-        case "jl":
-          resp = { orden: 7, key: "jl", value: "JULIO" };
-          break;
-        case "ag":
-          resp = { orden: 8, key: "ag", value: "AGOSTO" };
-          break;
-        case "se":
-          resp = { orden: 9, key: "se", value: "SETIEMBRE" };
-          break;
-        case "oc":
-          resp = { orden: 10, key: "oc", value: "OCTUBRE" };
-          break;
-        case "no":
-          resp = { orden: 11, key: "no", value: "NOVIEMBRE" };
-          break;
-        case "di":
-          resp = { orden: 12, key: "di", value: "DICIEMBRE" };
-          break;
-        default:
-          break;
-      }
+            const seleccionado = tablasPrincipales.TablasPrincipales[1].filter(
+        (item) => item.prefijo === element
+      );
+
+      const resp = {
+        orden: seleccionado[0].cod_mes,
+        key: seleccionado[0].prefijo,
+        value: seleccionado[0].desc_mes,
+      };
       return resp;
     });
 

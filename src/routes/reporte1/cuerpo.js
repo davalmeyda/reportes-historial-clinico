@@ -1,6 +1,7 @@
 import { SearchOutlined } from "@ant-design/icons";
 import { DatePicker, Row, Col, Select, Checkbox, Tooltip, Button } from "antd";
 import { useState } from "react";
+import { tablasPrincipales } from "../../constants/TablasPrincipales";
 import { httpClient } from "../../util/Api";
 import Tablas from "./tablas";
 
@@ -20,71 +21,25 @@ const Cuerpo = ({ impresion }) => {
 
   const { Option } = Select;
 
-  const mesesData = [
-    <Option key="en">Enero</Option>,
-    <Option key="fe">Febrero</Option>,
-    <Option key="ma">Marzo</Option>,
-    <Option key="ab">Abril</Option>,
-    <Option key="my">Mayo</Option>,
-    <Option key="jn">Junio</Option>,
-    <Option key="jl">Julio</Option>,
-    <Option key="ag">Agosto</Option>,
-    <Option key="se">Setiembre</Option>,
-    <Option key="oc">Octubre</Option>,
-    <Option key="no">Noviembre</Option>,
-    <Option key="di">Diciembre</Option>,
-  ];
+  const mesesData = tablasPrincipales.TablasPrincipales[1].map((item) => (
+    <Option key={item.prefijo}>{item.desc_mes}</Option>
+  ));
 
-  const tiposData = [
-    <Option key="0001">Laboratorio</Option>,
-    <Option key="0002">Procedimientos Medicos</Option>,
-    <Option key="0003">Ecografia</Option>,
-    <Option key="0004">Rayos X</Option>,
-  ];
+  const tiposData = tablasPrincipales.TablasPrincipales[2].map((item) => (
+    <Option key={item.cod_tipo}>{item.desc_tipo}</Option>
+  ));
 
   function handleChangeMeses(value) {
     const dat = value.map((element) => {
-      let resp = null;
-      switch (element) {
-        case "en":
-          resp = { orden: 1, key: "en", value: "ENERO" };
-          break;
-        case "fe":
-          resp = { orden: 2, key: "fe", value: "FEBRERO" };
-          break;
-        case "ma":
-          resp = { orden: 3, key: "ma", value: "MARZO" };
-          break;
-        case "ab":
-          resp = { orden: 4, key: "ab", value: "ABRIL" };
-          break;
-        case "my":
-          resp = { orden: 5, key: "my", value: "MAYO" };
-          break;
-        case "jn":
-          resp = { orden: 6, key: "jn", value: "JUNIO" };
-          break;
-        case "jl":
-          resp = { orden: 7, key: "jl", value: "JULIO" };
-          break;
-        case "ag":
-          resp = { orden: 8, key: "ag", value: "AGOSTO" };
-          break;
-        case "se":
-          resp = { orden: 9, key: "se", value: "SETIEMBRE" };
-          break;
-        case "oc":
-          resp = { orden: 10, key: "oc", value: "OCTUBRE" };
-          break;
-        case "no":
-          resp = { orden: 11, key: "no", value: "NOVIEMBRE" };
-          break;
-        case "di":
-          resp = { orden: 12, key: "di", value: "DICIEMBRE" };
-          break;
-        default:
-          break;
-      }
+      const seleccionado = tablasPrincipales.TablasPrincipales[1].filter(
+        (item) => item.prefijo === element
+      );
+
+      const resp = {
+        orden: seleccionado[0].cod_mes,
+        key: seleccionado[0].prefijo,
+        value: seleccionado[0].desc_mes,
+      };
       return resp;
     });
 
@@ -95,24 +50,14 @@ const Cuerpo = ({ impresion }) => {
     // {{ key: "0001", titulo: "Laboratorio" }}
 
     const dat = value.map((element) => {
-      let resp = null;
+      const seleccionado = tablasPrincipales.TablasPrincipales[2].filter(
+        (item) => item.cod_tipo === element
+      );
 
-      switch (element) {
-        case "0001":
-          resp = { key: "0001", titulo: "Laboratorio" };
-          break;
-        case "0002":
-          resp = { key: "0002", titulo: "Procedimientos Medicos" };
-          break;
-        case "0003":
-          resp = { key: "0003", titulo: "Ecografia" };
-          break;
-        case "0004":
-          resp = { key: "0004", titulo: "Rayos X" };
-          break;
-        default:
-          break;
-      }
+      const resp = {
+        key: seleccionado[0].cod_tipo,
+        titulo: seleccionado[0].desc_tipo,
+      };
       return resp;
     });
     console.log(dat);

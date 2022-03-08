@@ -1,4 +1,4 @@
-import { Table, Tag, Space, Row, Col, Pagination, Divider } from "antd";
+import { Table, Row, Col, Divider } from "antd";
 
 const Tablas = (props) => {
   const { ano, meses, tipos, ordenes, compras, data: dataServidor } = props;

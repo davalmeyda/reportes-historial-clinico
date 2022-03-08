@@ -1,7 +1,5 @@
 import { PlusSquareOutlined } from "@ant-design/icons";
-import { Table, Tag, Space, Row, Col, Pagination, Divider, Button } from "antd";
-import { useState } from "react";
-import ModalDetalles from "./modal";
+import { Table, Row, Divider, Button } from "antd";
 
 const Tablas = (props) => {
   const {

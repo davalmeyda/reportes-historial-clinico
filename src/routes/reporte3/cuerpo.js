@@ -1,6 +1,7 @@
 import { SearchOutlined } from "@ant-design/icons";
 import { DatePicker, Row, Col, Select, Checkbox, Tooltip, Button } from "antd";
 import { useState } from "react";
+import { tablasPrincipales } from "../../constants/TablasPrincipales";
 import { httpClient } from "../../util/Api";
 import Tablas from "./tablas";
 
@@ -18,20 +19,9 @@ const Cuerpo = ({ impresion }) => {
 
   const { Option } = Select;
 
-  const mesesData = [
-    <Option key="en">Enero</Option>,
-    <Option key="fe">Febrero</Option>,
-    <Option key="ma">Marzo</Option>,
-    <Option key="ab">Abril</Option>,
-    <Option key="my">Mayo</Option>,
-    <Option key="jn">Junio</Option>,
-    <Option key="jl">Julio</Option>,
-    <Option key="ag">Agosto</Option>,
-    <Option key="se">Setiembre</Option>,
-    <Option key="oc">Octubre</Option>,
-    <Option key="no">Noviembre</Option>,
-    <Option key="di">Diciembre</Option>,
-  ];
+  const mesesData = tablasPrincipales.TablasPrincipales[1].map((item) => (
+    <Option key={item.prefijo}>{item.desc_mes}</Option>
+  ));
 
   const especialidadData = [
     <Option key="001">CARDIOLOGIA</Option>,

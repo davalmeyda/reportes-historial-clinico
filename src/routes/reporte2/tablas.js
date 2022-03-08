@@ -1,4 +1,4 @@
-import { Table, Tag, Space, Row, Col, Pagination, Divider } from "antd";
+import { Table, Row, Divider } from "antd";
 
 const Tablas = (props) => {
   const {
@@ -107,66 +107,6 @@ const Titulo = (props) => {
       </div>
     </div>
   );
-};
-
-const Contenido = (props) => {
-  const { ano, meses: mesesDesordenado, data: dataServidor } = props;
-
-  const meses = mesesDesordenado.sort((a, b) => a.orden - b.orden);
-
-  const columns = [
-    {
-      title: "",
-      dataIndex: "nombre",
-      key: "nombre",
-      // render: (text) => <a>{text}</a>,
-    },
-    {
-      title: "AÑO",
-      dataIndex: "ano",
-      key: "ano",
-    },
-  ];
-
-  meses.forEach((mes) => {
-    columns.push({
-      title: mes.value,
-      dataIndex: mes.value,
-      key: mes.value,
-      align: "right",
-    });
-  });
-
-  const data = [
-    {
-      key: 1,
-      nombre: "consulta externa",
-      ano: ano,
-    },
-    {
-      key: 2,
-      nombre: "laboratorio",
-      ano: ano,
-    },
-    {
-      key: 3,
-      nombre: "ecografia",
-      ano: ano,
-    },
-  ];
-
-  // if (dataServidor) {
-  //   data.forEach((dato) => {
-  //     meses.forEach((mes) => {
-  //       const porcentaje = dato.key === 4 ? "%" : dato.key === 5 ? "%" : "";
-  //       dato[mes.value] =
-  //         dataServidor[mes.key + "_" + diccionario[dato.key]].toString() +
-  //         porcentaje;
-  //     });
-  //   });
-  // }
-
-  return <Table columns={columns} pagination={false} dataSource={data} />;
 };
 
 export default Tablas;
