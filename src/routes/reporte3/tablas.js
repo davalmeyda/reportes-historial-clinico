@@ -5,24 +5,24 @@ const Tablas = (props) => {
 
   const columns = [
     {
-      title: "Ranking",
+      title: "Ranking".toUpperCase(),
       dataIndex: "posicion_top",
       key: "posicion_top",
       align: "center",
     },
     {
-      title: "Etiquetas de fila",
+      title: "Etiquetas de fila".toUpperCase(),
       dataIndex: "nombre_producto",
       key: "nombre_producto",
     },
     {
-      title: "Suma de REAL Monto Venta",
+      title: "Suma de REAL Monto Venta".toUpperCase(),
       dataIndex: "monto_venta",
       key: "monto_venta",
       align: "right",
     },
     {
-      title: "Ordenes Ventas",
+      title: "Ordenes Ventas".toUpperCase(),
       dataIndex: "ordenes_venta",
       key: "ordenes_venta",
       align: "right",

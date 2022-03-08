@@ -29,7 +29,7 @@ const Cuerpo = ({ impresion }) => {
 
   function handleChangeMeses(value) {
     const dat = value.map((element) => {
-            const seleccionado = tablasPrincipales.TablasPrincipales[1].filter(
+      const seleccionado = tablasPrincipales.TablasPrincipales[1].filter(
         (item) => item.prefijo === element
       );
 
@@ -48,7 +48,7 @@ const Cuerpo = ({ impresion }) => {
     // {{ key: "0001", titulo: "Laboratorio" }}
 
     const dat = value.map((element) => {
-            const seleccionado = tablasPrincipales.TablasPrincipales[2].filter(
+      const seleccionado = tablasPrincipales.TablasPrincipales[2].filter(
         (item) => item.cod_tipo === element
       );
 

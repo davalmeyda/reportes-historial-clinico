@@ -2,6 +2,7 @@ import { Card, Button } from "antd";
 import React, { useRef } from "react";
 import Cuerpo from "./cuerpo";
 import ReactToPrint from "react-to-print";
+import { PrinterOutlined } from "@ant-design/icons";
 
 const Reporte2 = () => {
   const pageStyle = `
@@ -65,7 +66,7 @@ const Reporte2 = () => {
           >
             <ReactToPrint
               pageStyle={pageStyle}
-              trigger={() => <Button type="primary">Imprimir</Button>}
+              trigger={() => <Button type="primary" icon={<PrinterOutlined />}>Imprimir</Button>}
               content={() => impresionRef.current}
             />
           </div>

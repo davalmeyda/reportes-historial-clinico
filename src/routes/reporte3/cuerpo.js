@@ -23,57 +23,22 @@ const Cuerpo = ({ impresion }) => {
     <Option key={item.prefijo}>{item.desc_mes}</Option>
   ));
 
-  const especialidadData = [
-    <Option key="001">CARDIOLOGIA</Option>,
-    <Option key="002">DERMATOLOGIA</Option>,
-    <Option key="003">GASTROENTEROLOGIA</Option>,
-    <Option key="004">GINECOLOGIA</Option>,
-  ];
+  const especialidadData = tablasPrincipales.TablasPrincipales[0].map(
+    (item) => <Option key={item.cod_esp}>{item.desc_esp}</Option>
+  );
 
   function handleChangeMeses(value) {
     console.log(value);
 
-    let resp = null;
-    switch (value) {
-      case "en":
-        resp = { orden: 1, key: "en", value: "ENERO" };
-        break;
-      case "fe":
-        resp = { orden: 2, key: "fe", value: "FEBRERO" };
-        break;
-      case "ma":
-        resp = { orden: 3, key: "ma", value: "MARZO" };
-        break;
-      case "ab":
-        resp = { orden: 4, key: "ab", value: "ABRIL" };
-        break;
-      case "my":
-        resp = { orden: 5, key: "my", value: "MAYO" };
-        break;
-      case "jn":
-        resp = { orden: 6, key: "jn", value: "JUNIO" };
-        break;
-      case "jl":
-        resp = { orden: 7, key: "jl", value: "JULIO" };
-        break;
-      case "ag":
-        resp = { orden: 8, key: "ag", value: "AGOSTO" };
-        break;
-      case "se":
-        resp = { orden: 9, key: "se", value: "SETIEMBRE" };
-        break;
-      case "oc":
-        resp = { orden: 10, key: "oc", value: "OCTUBRE" };
-        break;
-      case "no":
-        resp = { orden: 11, key: "no", value: "NOVIEMBRE" };
-        break;
-      case "di":
-        resp = { orden: 12, key: "di", value: "DICIEMBRE" };
-        break;
-      default:
-        break;
-    }
+    const seleccionado = tablasPrincipales.TablasPrincipales[1].filter(
+      (item) => item.prefijo === value
+    );
+
+    const resp = {
+      orden: seleccionado[0].cod_mes,
+      key: seleccionado[0].prefijo,
+      value: seleccionado[0].desc_mes,
+    };
 
     setMes(resp);
   }
@@ -81,24 +46,17 @@ const Cuerpo = ({ impresion }) => {
   function handleChangeEspecialidad(value) {
     // {{ key: "0001", titulo: "Laboratorio" }}
 
-    let resp = null;
+    // let resp = null;
 
-    switch (value) {
-      case "001":
-        resp = { key: "001", titulo: "CARDIOLOGIA" };
-        break;
-      case "002":
-        resp = { key: "002", titulo: "DERMATOLOGIA" };
-        break;
-      case "003":
-        resp = { key: "003", titulo: "GASTROENTEROLOGIA" };
-        break;
-      case "004":
-        resp = { key: "004", titulo: "GINECOLOGIA" };
-        break;
-      default:
-        break;
-    }
+    const seleccionado = tablasPrincipales.TablasPrincipales[0].filter(
+      (item) => item.cod_esp === value
+    );
+
+    const resp = {
+      key: seleccionado[0].cod_esp,
+      titulo: seleccionado[0].desc_esp,
+    };
+
     console.log(resp);
     setEspecialidad(resp);
   }

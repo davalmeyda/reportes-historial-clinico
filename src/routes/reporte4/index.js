@@ -3,6 +3,7 @@ import React, { useRef, useState } from "react";
 import Cuerpo from "./cuerpo";
 import ReactToPrint from "react-to-print";
 import ModalDetalles from "./modal";
+import { PrinterOutlined } from "@ant-design/icons";
 
 const Reporte4 = () => {
   const [abrirModal, setAbrirModal] = useState(false);
@@ -68,7 +69,7 @@ const Reporte4 = () => {
           >
             <ReactToPrint
               pageStyle={pageStyle}
-              trigger={() => <Button type="primary">Imprimir</Button>}
+              trigger={() => <Button type="primary" icon={<PrinterOutlined />}>Imprimir</Button>}
               content={() => impresionRef.current}
             />
           </div>

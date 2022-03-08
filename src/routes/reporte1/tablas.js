@@ -139,27 +139,27 @@ const Contenido = (props) => {
     data = [
       {
         key: 1,
-        nombre: "Nro de ordenes",
+        nombre: "Nro de ordenes".toUpperCase(),
         ano: ano,
       },
       {
         key: 2,
-        nombre: "Nro ORDENES realizados",
+        nombre: "Nro ORDENES realizados".toUpperCase(),
         ano: ano,
       },
       {
         key: 3,
-        nombre: "Total pacientes",
+        nombre: "Total pacientes".toUpperCase(),
         ano: ano,
       },
       {
         key: 4,
-        nombre: "% VERSUS ORDEN VS. CONCLUIDO",
+        nombre: "% VERSUS ORDEN VS. CONCLUIDO".toUpperCase(),
         ano: ano,
       },
       {
         key: 5,
-        nombre: "% VERSUS DE PACIENTE VS ORDENE COCNL",
+        nombre: "% VERSUS DE PACIENTE VS ORDENE COCNL".toUpperCase(),
         ano: ano,
       },
     ];
@@ -167,27 +167,27 @@ const Contenido = (props) => {
     data = [
       {
         key: 1,
-        nombre: "NRO DE PRODUCTOS",
+        nombre: "NRO DE PRODUCTOS".toUpperCase(),
         ano: ano,
       },
       {
         key: 2,
-        nombre: "NRO DE PRODUCTO REALIZADO",
+        nombre: "NRO DE PRODUCTO REALIZADO".toUpperCase(),
         ano: ano,
       },
       {
         key: 3,
-        nombre: "Total pacientes",
+        nombre: "Total pacientes".toUpperCase(),
         ano: ano,
       },
       {
         key: 4,
-        nombre: "% VERSUS ORDEN VS. CONCLUIDO",
+        nombre: "% VERSUS ORDEN VS. CONCLUIDO".toUpperCase(),
         ano: ano,
       },
       {
         key: 5,
-        nombre: "% VERSUS DE PACIENTE VS ORDENE COCNL",
+        nombre: "% VERSUS DE PACIENTE VS ORDENE COCNL".toUpperCase(),
         ano: ano,
       },
     ];

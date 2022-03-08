@@ -5,7 +5,7 @@ import { tablasPrincipales } from "../../constants/TablasPrincipales";
 import { httpClient } from "../../util/Api";
 import Tablas from "./tablas";
 
-const Cuerpo = ({ setAbrirModal, setDatosModal,impresion }) => {
+const Cuerpo = ({ setAbrirModal, setDatosModal, impresion }) => {
   const [ano, setAno] = useState("");
   const [meses, setMeses] = useState([]);
   const [especialidades, setEspecialidades] = useState([]);
@@ -23,16 +23,13 @@ const Cuerpo = ({ setAbrirModal, setDatosModal,impresion }) => {
     <Option key={item.prefijo}>{item.desc_mes}</Option>
   ));
 
-  const especialidadData = [
-    <Option key="001">CARDIOLOGIA</Option>,
-    <Option key="002">DERMATOLOGIA</Option>,
-    <Option key="003">GASTROENTEROLOGIA</Option>,
-    <Option key="004">GINECOLOGIA</Option>,
-  ];
+  const especialidadData = tablasPrincipales.TablasPrincipales[0].map(
+    (item) => <Option key={item.cod_esp}>{item.desc_esp}</Option>
+  );
 
   function handleChangeMeses(value) {
     const dat = value.map((element) => {
-            const seleccionado = tablasPrincipales.TablasPrincipales[1].filter(
+      const seleccionado = tablasPrincipales.TablasPrincipales[1].filter(
         (item) => item.prefijo === element
       );
 
@@ -48,27 +45,16 @@ const Cuerpo = ({ setAbrirModal, setDatosModal,impresion }) => {
   }
 
   function handleChangeEspecialidad(value) {
-    // {{ key: "0001", titulo: "Laboratorio" }}
-
     const dat = value.map((element) => {
-      let resp = null;
+      const seleccionado = tablasPrincipales.TablasPrincipales[0].filter(
+        (item) => item.cod_esp === element
+      );
 
-      switch (element) {
-        case "001":
-          resp = { key: "001", titulo: "CARDIOLOGIA" };
-          break;
-        case "002":
-          resp = { key: "002", titulo: "DERMATOLOGIA" };
-          break;
-        case "003":
-          resp = { key: "003", titulo: "GASTROENTEROLOGIA" };
-          break;
-        case "004":
-          resp = { key: "004", titulo: "GINECOLOGIA" };
-          break;
-        default:
-          break;
-      }
+      const resp = {
+        key: seleccionado[0].cod_esp,
+        titulo: seleccionado[0].desc_esp,
+      };
+
       return resp;
     });
     console.log(dat);
@@ -143,14 +129,14 @@ const Cuerpo = ({ setAbrirModal, setDatosModal,impresion }) => {
 
         {data ? (
           <div ref={impresion}>
-          <Tablas
-            ano={ano}
-            meses={meses}
-            especialidades={especialidades}
-            data={data}
-            setDatosModal={setDatosModal}
-            setAbrirModal={setAbrirModal}
-          ></Tablas>
+            <Tablas
+              ano={ano}
+              meses={meses}
+              especialidades={especialidades}
+              data={data}
+              setDatosModal={setDatosModal}
+              setAbrirModal={setAbrirModal}
+            ></Tablas>
           </div>
         ) : null}
       </Col>

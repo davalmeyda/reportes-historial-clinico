@@ -38,7 +38,7 @@ const Tablas = (props) => {
       align: "right",
     });
     columns.push({
-      title: mes.value,
+      title: mes.value.toUpperCase(),
       dataIndex: mes.value,
       key: mes.value,
       align: "right",
@@ -60,8 +60,8 @@ const Tablas = (props) => {
             parseFloat(ddd[0][mes.key + "_" + diccionario[2]]).toFixed(2);
           campos[mes.key + "orden"] = ddd[0][mes.key + "_" + diccionario[1]];
         } else {
-          campos[mes.value] = "";
-          campos[mes.key + "orden"] = "";
+          campos[mes.value] = "-";
+          campos[mes.key + "orden"] = "-";
         }
       });
     }

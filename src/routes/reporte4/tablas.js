@@ -41,7 +41,7 @@ const Tablas = (props) => {
       align: "right",
     });
     columns.push({
-      title: mes.value,
+      title: mes.value.toUpperCase(),
       dataIndex: mes.value,
       key: mes.value,
       align: "right",
@@ -52,22 +52,25 @@ const Tablas = (props) => {
       key: mes.value + "detalles",
       align: "center",
       render: (text, record) => {
-        return (
-          <div>
-            <Button
-              type="primary"
-              onClick={() => {
-                setDatosModal({
-                  ESPECIALIDAD: record.key,
-                  MES: mes.orden.toString().padStart(2, "0"),
-                  AÑO: ano,
-                });
-                setAbrirModal(true);
-              }}
-              icon={<PlusSquareOutlined />}
-            />
-          </div>
-        );
+        if (record.key !== "total") {
+          return (
+            <div>
+              <Button
+                type="primary"
+                onClick={() => {
+                  setDatosModal({
+                    ESPECIALIDAD: record.key,
+                    MES: mes.orden.toString().padStart(2, "0"),
+                    AÑO: ano,
+                  });
+                  setAbrirModal(true);
+                }}
+                icon={<PlusSquareOutlined />}
+              />
+            </div>
+          );
+        }
+        return null;
       },
     });
   });
@@ -95,8 +98,8 @@ const Tablas = (props) => {
             (totales[mes.value] ? totales[mes.value] : 0) +
             parseFloat(ddd[0][mes.key + "_" + diccionario[2]]);
         } else {
-          campos[mes.value] = "";
-          campos[mes.key + "orden"] = "";
+          campos[mes.value] = "-";
+          campos[mes.key + "orden"] = "-";
         }
       });
     }
